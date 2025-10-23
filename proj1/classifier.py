@@ -168,8 +168,7 @@ def classify(doc, idf, centroids):
         if term in idf:
             vec[term] = (tfval / doc.num_terms) * idf[term]
     norm = math.sqrt(sum(v * v for v in vec.values()))
-    if norm > 0.0:
-        vec = {t: v / norm for t, v in vec.items()}
+    vec = {t: v / norm for t, v in vec.items()}
 
     max_score = 0.0
     max_label = None
