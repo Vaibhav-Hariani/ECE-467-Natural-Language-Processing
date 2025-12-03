@@ -181,13 +181,12 @@ def classify(doc, idf, centroids):
 
 
 if __name__ == "__main__":
-    train_list = 'proj1/corpus/corpus1_train.labels'
-    test_list = 'proj1/corpus/corpus1_test.labels'
     if len(sys.argv) < 3:
         print("Usage: python classifier.py <train_list_file> <test_list_file> [<output_predictions_file>]")
-    else:
-        train_list = sys.argv[1]
-        test_list = sys.argv[2]
+        sys.exit(1)
+
+    train_list = sys.argv[1]
+    test_list = sys.argv[2]
     train_docs = load_docs(train_list, labeled=True)
     
     idf = compute_idf(train_docs)
