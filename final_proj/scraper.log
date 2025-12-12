@@ -1,0 +1,9 @@
+2025-12-12 00:04:01,739 - INFO - Database created/connected: rym_music.db
+2025-12-12 00:04:01,739 - INFO - Starting browser...
+2025-12-12 00:04:02,600 - INFO - Fetching chart page 1: https://rateyourmusic.com/charts/top/track/all-time/1/
+2025-12-12 00:04:02,968 - INFO - Cloudflare challenge detected, waiting... (attempt 1)
+2025-12-12 00:04:07,661 - INFO - Scraping interrupted by user. Progress has been saved.
+2025-12-12 00:04:07,662 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectionResetError(104, 'Connection reset by peer')': /session/ac87a3ef99cccb65d23fe03589f45340
+2025-12-12 00:04:07,663 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=49915): Failed to establish a new connection: [Errno 111] Connection refused")': /session/ac87a3ef99cccb65d23fe03589f45340
+2025-12-12 00:04:07,663 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=49915): Failed to establish a new connection: [Errno 111] Connection refused")': /session/ac87a3ef99cccb65d23fe03589f45340
+2025-12-12 00:04:07,664 - INFO - Browser closed.
