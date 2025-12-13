@@ -9,11 +9,11 @@ import math
 from dataclasses import dataclass
 
 
-nltk.download('punkt_tab')
-nltk.download('stopwords')
-nltk.download('wordnet')
+nltk.download("punkt_tab")
+nltk.download("stopwords")
+nltk.download("wordnet")
 # TOKENIZER = RegexpTokenizer(r'\w+')
-STOPWORDS = set(stopwords.words('english'))
+STOPWORDS = set(stopwords.words("english"))
 LEMMATIZER = WordNetLemmatizer()
 
 
@@ -25,21 +25,22 @@ class Document:
     tf_unnorm: Dict[str, int]
     num_terms: int
 
+
 def load_docs(list_file_path, labeled=True):
     docs = []
     # determine base directory for relative paths in the list file
     base_dir = os.path.dirname(os.path.abspath(list_file_path))
-    with open(list_file_path, 'r') as lf:
+    with open(list_file_path, "r") as lf:
         for line in lf:
             line = line.strip()
-            path, label = line.rsplit(' ', 1)
+            path, label = line.rsplit(" ", 1)
             if not labeled:
                 label = None
             # keep the original (as-written) path for storage as a relative path
             original_path = path
             open_path = os.path.normpath(os.path.join(base_dir, original_path))
 
-            with open(open_path, 'r', encoding='utf-8', errors='ignore') as f:
+            with open(open_path, "r", encoding="utf-8", errors="ignore") as f:
                 text = f.read()
                 doc = tokenize(text)
                 doc.label = label
@@ -59,7 +60,13 @@ def tokenize(doc):
                 tf_dict[tok] = tf_dict.get(tok, 0) + 1
                 total_terms += 1
     tokens_list = list(tf_dict.keys())
-    return Document(path=None, label=None, tokens=tokens_list, tf_unnorm=tf_dict, num_terms=total_terms)
+    return Document(
+        path=None,
+        label=None,
+        tokens=tokens_list,
+        tf_unnorm=tf_dict,
+        num_terms=total_terms,
+    )
 
 
 def compute_idf(docs: List[Document]):
@@ -68,7 +75,7 @@ def compute_idf(docs: List[Document]):
     for doc in docs:
         terms = doc.tokens
         for t in terms:
-            freq_dict[t] = freq_dict.get(t, 0) + 1   
+            freq_dict[t] = freq_dict.get(t, 0) + 1
     idf = {}
     doc_log = math.log(N)
     for term in freq_dict:
@@ -89,9 +96,9 @@ def compute_centroids(train_docs, idf):
         sum_vec: Dict[str, float] = {}
         for d in docs:
             for term, tfval in d.tf_unnorm.items():
-                addition = (tfval/d.num_terms) * idf[term]
+                addition = (tfval / d.num_terms) * idf[term]
                 sum_vec[term] = sum_vec.get(term, 0.0) + addition
-        
+
         # average docs, compute norm
         n = len(docs)
         avg_vec: Dict[str, float] = {}
@@ -106,25 +113,24 @@ def compute_centroids(train_docs, idf):
     return centroids
 
 
-
 ## This is A.I Generated: Just a quick function for cross-validation splitting
 def split_list(list_file_path, train_out, test_out, test_frac=0.2):
     rng = random.Random()
 
     # group lines by label
     groups = {}
-    with open(list_file_path, 'r', encoding='utf-8') as lf:
+    with open(list_file_path, "r", encoding="utf-8") as lf:
         for line in lf:
             line = line.strip()
             if not line:
                 continue
             # expect "path label"
-            parts = line.rsplit(' ', 1)
+            parts = line.rsplit(" ", 1)
             if len(parts) == 2:
                 path, label = parts
             else:
                 path = parts[0]
-                label = ''
+                label = ""
             groups.setdefault(label, []).append(line)
 
     train_lines = []
@@ -143,11 +149,11 @@ def split_list(list_file_path, train_out, test_out, test_frac=0.2):
     if test_dir:
         os.makedirs(test_dir, exist_ok=True)
 
-    with open(train_out, 'w', encoding='utf-8') as tf:
+    with open(train_out, "w", encoding="utf-8") as tf:
         for l in train_lines:
             tf.write(l + "\n")
 
-    with open(test_out, 'w', encoding='utf-8') as tf:
+    with open(test_out, "w", encoding="utf-8") as tf:
         for l in test_lines:
             tf.write(l + "\n")
 
@@ -182,23 +188,24 @@ def classify(doc, idf, centroids):
 
 if __name__ == "__main__":
     if len(sys.argv) < 3:
-        print("Usage: python classifier.py <train_list_file> <test_list_file> [<output_predictions_file>]")
+        print(
+            "Usage: python classifier.py <train_list_file> <test_list_file> [<output_predictions_file>]"
+        )
         sys.exit(1)
 
     train_list = sys.argv[1]
     test_list = sys.argv[2]
     train_docs = load_docs(train_list, labeled=True)
-    
+
     idf = compute_idf(train_docs)
     centroids = compute_centroids(train_docs, idf)
 
-    test_docs = load_docs(test_list, labeled=False)    
-    out_path = 'predictions.txt'
+    test_docs = load_docs(test_list, labeled=False)
+    out_path = "predictions.txt"
     out_path = sys.argv[3] if len(sys.argv) > 3 and sys.argv[3] else out_path
 
-    with open(out_path, 'w', encoding='utf-8') as out:
+    with open(out_path, "w", encoding="utf-8") as out:
         for d in test_docs:
             pred, score = classify(d, idf, centroids)
             out.write(f"{d.path} {pred}\n")
     print(f"Wrote predictions to {out_path}")
-

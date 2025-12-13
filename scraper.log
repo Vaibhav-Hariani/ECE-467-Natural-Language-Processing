@@ -1,0 +1,47 @@
+2025-12-12 23:53:46,866 - INFO - Database created/connected: rym_music.db
+2025-12-12 23:53:46,866 - INFO - Starting browser...
+2025-12-12 23:53:48,122 - INFO - Fetching chart page 1: https://rateyourmusic.com/charts/top/track/all-time/1/
+2025-12-12 23:53:48,429 - INFO - Cloudflare challenge detected, waiting... (attempt 1)
+2025-12-12 23:53:52,554 - INFO - Scraping interrupted by user. Progress has been saved.
+2025-12-12 23:53:52,555 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectionResetError(104, 'Connection reset by peer')': /session/f73c143c0ea7736d6a3860e213b16045
+2025-12-12 23:53:52,557 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=34413): Failed to establish a new connection: [Errno 111] Connection refused")': /session/f73c143c0ea7736d6a3860e213b16045
+2025-12-12 23:53:52,557 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=34413): Failed to establish a new connection: [Errno 111] Connection refused")': /session/f73c143c0ea7736d6a3860e213b16045
+2025-12-12 23:53:52,558 - INFO - Browser closed.
+2025-12-12 23:56:53,102 - INFO - Database created/connected: rym_music.db
+2025-12-12 23:56:53,103 - INFO - Starting browser...
+2025-12-12 23:56:53,789 - INFO - Fetching chart page 1: https://rateyourmusic.com/charts/top/track/all-time/1/
+2025-12-12 23:56:54,103 - INFO - Cloudflare challenge detected, waiting... (attempt 1)
+2025-12-12 23:57:04,177 - INFO - Cloudflare challenge detected, waiting... (attempt 2)
+2025-12-12 23:57:19,183 - ERROR - Scraping error: Message: invalid session id: session deleted as the browser has closed the connection
+from disconnected: not connected to DevTools
+  (Session info: chrome=143.0.7499.40); For documentation on this error, please visit: https://www.selenium.dev/documentation/webdriver/troubleshooting/errors#invalidsessionidexception
+Stacktrace:
+#0 0x55c2051ab19a <unknown>
+#1 0x55c204c28c4b <unknown>
+#2 0x55c204c0f76e <unknown>
+#3 0x55c204c375bf <unknown>
+#4 0x55c204ca81cb <unknown>
+#5 0x55c204cc560e <unknown>
+#6 0x55c204c6cc42 <unknown>
+#7 0x55c204c6d8f1 <unknown>
+#8 0x55c205173f39 <unknown>
+#9 0x55c205176e7d <unknown>
+#10 0x55c20515cc81 <unknown>
+#11 0x55c205177a5b <unknown>
+#12 0x55c205143a50 <unknown>
+#13 0x55c205198aa8 <unknown>
+#14 0x55c205198c79 <unknown>
+#15 0x55c2051aa4f3 <unknown>
+#16 0x7f7e21845464 start_thread
+#17 0x7f7e218c85ac __clone3
+
+2025-12-12 23:57:19,204 - INFO - Browser closed.
+2025-12-13 00:06:56,762 - INFO - Database created/connected: rym_music.db
+2025-12-13 00:06:56,762 - INFO - Starting browser...
+2025-12-13 00:06:57,486 - INFO - Fetching chart page 1: https://rateyourmusic.com/charts/top/track/all-time/1/
+2025-12-13 00:06:57,845 - INFO - Cloudflare challenge detected; waiting up to 300 seconds for user to clear it.
+2025-12-13 00:07:26,806 - INFO - Scraping interrupted by user. Progress has been saved.
+2025-12-13 00:07:26,807 - WARNING - Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectionResetError(104, 'Connection reset by peer')': /session/15f7246b2bebf2c2923d861685543f42
+2025-12-13 00:07:26,808 - WARNING - Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=34181): Failed to establish a new connection: [Errno 111] Connection refused")': /session/15f7246b2bebf2c2923d861685543f42
+2025-12-13 00:07:26,809 - WARNING - Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NewConnectionError("HTTPConnection(host='localhost', port=34181): Failed to establish a new connection: [Errno 111] Connection refused")': /session/15f7246b2bebf2c2923d861685543f42
+2025-12-13 00:07:26,810 - INFO - Browser closed.
